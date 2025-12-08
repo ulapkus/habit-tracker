@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import Image from "next/image";
 import arrow from "../../public/arrow.png";
 import styles from "../styles/page.module.css";
@@ -28,16 +29,7 @@ export default function CalendarChild({ isOpen, onClose }) {
       },
     ];
 
-    const response = await axios.post(
-      "https://api.openai.com/v1/chat/completions",
-      {
-        model: "gpt-3.5-turbo",
-        messages,
-      },
-      {
-        headers: {},
-      }
-    );
+    const response = await axios.post("/api/chat", { messages });
 
     const reply = response.data.choices[0].message.content;
     setMessages((prev) => [...prev, { role: "assistant", content: reply }]);

@@ -1,9 +1,11 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../styles/page.module.css";
 import { schedule } from "./testschedule";
 
-const Chatbot = ({ triggerMessages = [] }) => {
+export const Chatbot = ({ triggerMessages = [] }) => {
   const [messages, setMessages] = useState([
     {
       role: "system",
@@ -48,12 +50,16 @@ For each recommendation, include:
       newMessages.push({ role: "user", content: prompt });
       setMessages(newMessages);
 
-      const response = await axios.post();
+      const response = await axios.post("/api/chat", { messages: newMessages });
+
+      const reply = response.data.choices[0].message;
+      setMessages([...newMessages, reply]);
     } catch (error) {
       console.error("Error fetching response:", error);
     } finally {
       setLoading(false);
     }
+  };
 
   useEffect(() => {
     const runMessages = async () => {
