@@ -13,6 +13,34 @@
   padding-bottom: 5vh;
 }
 
+.no_habits_container {
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2vh;
+}
+
+.no_habits_subcontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1vh;
+}
+
+.no_habits_text {
+  font-size: 2vw;
+  text-align: center;
+  color: white;
+}
+
+.no_habits_text_small {
+  font-size: 1.5vw;
+  color: white;
+}
+
 .about_hey_and_welcome {
   display: flex;
   flex-direction: column;
@@ -115,6 +143,24 @@
   text-transform: uppercase;
   letter-spacing: 0.1vw;
   color: #fffae5;
+}
+
+.input_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1vh;
+  width: 90%;
+  height: 5vh;
+}
+
+.upload_section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1vh;
 }
 
 .days:last-child {
@@ -1108,6 +1154,24 @@
   height: 3.7vh;
 }
 
+.chat_input {
+  width: 60%;
+  height: 100%;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.chatbot_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1vh;
+  height: 100%;
+  width: 90%;
+}
+
 .logo_div {
   display: flex;
   flex-direction: row;
@@ -1198,6 +1262,15 @@
   text-transform: uppercase;
 }
 
+.calendar_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2vh;
+  /* display: block; */
+}
+
 .quote {
   color: #8bf1b5;
   font-size: 9vh;
@@ -1213,6 +1286,68 @@
   letter-spacing: 0.3vw;
   font-weight: 300;
   white-space: nowrap;
+  font-family: "Roboto Mono", monospace;
+}
+
+.hidden_file_input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.upload_button:hover {
+  background-color: #ffa201;
+  box-shadow: 0 0 30px rgba(255, 162, 1, 0.492);
+}
+
+.upload_button {
+  font-size: 1.85vh;
+  display: flex;
+  color: white;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border: 1.5px solid #ffa201;
+  text-align: center;
+  width: 8vw;
+  height: 5.5vh;
+  padding: 0 0 0 0;
+  background-color: #3f5530;
+  border-radius: 0.8vh;
+  text-decoration: none;
+  margin: 0 0 4vh 0;
+  cursor: pointer;
+}
+
+.calendar_header_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 6vh 0 4vh 0;
+  /* gap: 1vw; */
+}
+
+.calendar_header {
+  color: #8bf1b5;
+  font-size: 4vh;
+  letter-spacing: 0.3vw;
+  font-weight: 300;
+  /* font-family: "Roboto Mono", monospace; */
+}
+
+.chatbot_header {
+  color: #8bf1b5;
+  font-size: 3vh;
+  letter-spacing: 0.3vw;
+  font-weight: 300;
+  padding: 0 0 1vh 0;
   font-family: "Roboto Mono", monospace;
 }
 
@@ -1256,6 +1391,88 @@
   font-weight: 200;
   letter-spacing: 0.4vw;
   text-align: center;
+}
+
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal_container {
+  background-color: #1a1a1a;
+  padding: 2rem;
+  border-radius: 8px;
+  position: relative;
+  max-width: 100%;
+  height: 100%;
+}
+
+.modal_content {
+  background-color: #1a1a1a;
+  padding: 2rem;
+  border-radius: 8px;
+  position: relative;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal_content_cal {
+  background-color: #1a1a1a;
+  padding: 2rem;
+  border-radius: 8px;
+  position: relative;
+  max-width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.send_button:hover {
+  background-color: #ffa201;
+  box-shadow: 0 0 30px rgba(255, 162, 1, 0.492);
+  cursor: pointer;
+}
+
+.send_button {
+  font-size: 1.85vh;
+  display: flex;
+  color: white;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border: 1.5px solid #ffa201;
+  text-align: center;
+  width: 4.5vw;
+  height: 5.5vh;
+  padding: 0 0 0 0;
+  background-color: #3f5530;
+  border-radius: 0.8vh;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.close_button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.close_button:hover {
+  opacity: 0.8;
 }
 
 @media (max-width: 600px) {
@@ -2453,4 +2670,48 @@
     font-size: 6vh;
     padding: 1.5vh 0 4.5vh 0;
   }
+}
+
+.messages_container {
+  height: 300px;
+  overflow-y: auto;
+  width: 60%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  border-radius: 10px;
+  margin: 0 20vw 0 20vw;
+}
+
+.message {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.user_message {
+  align-items: flex-end; /* Align user messages to the right */
+  text-align: right;
+}
+
+.bot_message {
+  align-items: flex-start; /* Align bot messages to the left */
+  text-align: left;
+}
+
+.message_content {
+  margin-top: 5px;
+  max-width: 80%; /* Prevent messages from stretching full width */
+}
+
+.message_content p {
+  margin: 8px 0;
+}
+
+.bullet_point {
+  padding-left: 20px;
+  margin: 8px 0;
+  line-height: 1.5;
+  text-align: left; /* Keep bullet points left-aligned even in user messages */
 }

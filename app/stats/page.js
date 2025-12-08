@@ -9,7 +9,8 @@ import styles from "../styles/page.module.css";
 
 export default function Stats() {
   const [dateCreated, setDateCreated] = useState();
-  const daysDifference = differenceInDays(new Date(), new Date(dateCreated));
+  const days = differenceInDays(new Date(), new Date(dateCreated));
+  const daysDifference = Number.isNaN(days) ? 0 : days;
 
   async function getStartDate() {
     try {

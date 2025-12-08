@@ -7,7 +7,6 @@ import Image from "next/image";
 import arrow from "../public/arrow.png";
 import Bunny from "./components/bunny";
 import styles from "./styles/page.module.css";
-
 export default function Dashboard() {
   const [displayedQuote, setDisplayedQuote] = useState("");
   const [displayedAuthor, setDisplayedAuthor] = useState("");
@@ -133,6 +132,7 @@ export default function Dashboard() {
           {displayedQuote}
           <span className={styles.author}>-{displayedAuthor}</span>
         </p>
+
         <Link href="/chart" className={styles.quote_button_plus_arrow}>
           <p className={styles.quote_button}>Go to chart</p>
           <Image

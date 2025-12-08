@@ -53,6 +53,13 @@ const Navbar = () => {
               >
                 REGISTER
               </Link>
+              {/* <Link
+                href="/calendar"
+                className={styles.nav_link}
+                style={{ color: textColor }}
+              >
+                CALENDAR
+              </Link> */}
             </>
           ) : (
             <>
@@ -70,6 +77,13 @@ const Navbar = () => {
               >
                 STATS
               </Link>
+              {/* <Link
+                href="/calendar"
+                className={styles.nav_link}
+                style={{ color: textColor }}
+              >
+                CALENDAR
+              </Link> */}
               <p
                 className={`${styles.nav_link} ${styles.logout}`}
                 onClick={() => {

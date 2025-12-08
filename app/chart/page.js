@@ -10,16 +10,16 @@ import arrowLeft from "../../public/arrow-left.png";
 import arrowRight from "../../public/arrow-right.png";
 import Bunny from "../components/bunny";
 import styles from "../styles/page.module.css";
+// import CalendarChild from "../components/modalcalendar";
 
 export const Context = createContext([[], () => {}]);
 export const DaysContext = React.createContext();
 export const ColorContext = React.createContext();
 export const ModalContext = React.createContext();
-
 export default function Chart() {
-  const [habits, setHabits] = useState(["eat"]);
-  const [days, setDays] = useState({ eat: ["2024-6-12", "2024-6-15"] });
-  const [colors, setColors] = useState({ eat: "#FF8466" });
+  const [habits, setHabits] = useState([]);
+  const [days, setDays] = useState({});
+  const [colors, setColors] = useState({});
   const [weekCount, setWeekCount] = useState(-1);
   const [view, setView] = useState("week");
   const [isDayClicked, setIsDayClicked] = useState(false);
@@ -39,6 +39,7 @@ export default function Chart() {
   });
   const [isNewUser, setIsNewUser] = useState(true);
   const [resetChildtwo, setResetChildtwo] = useState(false);
+  // const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
 
   async function fetchState() {
     try {
@@ -68,6 +69,10 @@ export default function Chart() {
   const addHabit = () => {
     setModalVisibilityNew(true);
     setResetChildtwo(true);
+  };
+
+  const openCalendar = () => {
+    setIsCalendarModalOpen(true);
   };
 
   const eraseHabit = (activity, i) => {
@@ -287,6 +292,22 @@ export default function Chart() {
               />
             </div>
             <div className={styles.header_right_week}>
+              {/* <div className={styles.month_view_container}>
+                <p
+                  onClick={openCalendar}
+                  style={{
+                    color: "white",
+                    fontFamily: "Roboto Mono, monospace",
+                    fontSize: 12,
+                    whiteSpace: "wrap",
+                    textAlign: "center",
+                    width: "90%",
+                    cursor: "pointer",
+                  }}
+                >
+                  UPLOAD CALENDAR
+                </p>
+              </div> */}
               <div
                 className={styles.month_view_container}
                 onChange={handleChange}
@@ -326,6 +347,10 @@ export default function Chart() {
             >
               <Child />
               <Childtwo />
+              {/* <CalendarChild 
+                isOpen={isCalendarModalOpen} 
+                onClose={() => setIsCalendarModalOpen(false)} 
+              /> */}
             </ModalContext.Provider>
             <table>
               <thead>
@@ -493,36 +518,59 @@ export default function Chart() {
                   </tr>
                 </thead>
                 <tbody>
-                  {Object.keys(days).map((activity, index) => (
-                    <tr key={index} className={styles.month_cell_row}>
-                      <td className={styles.month_cell_habit}>
-                        <div className={styles.activity_month}>{activity}</div>
-                        <p
-                          onClick={() => eraseHabit(activity, index)}
-                          className={styles.x_button_month}
-                        >
-                          X
-                        </p>
-                      </td>
-                      {Array.from(
-                        { length: daysInMonth(year, month) },
-                        (_, dayIndex) => (
-                          <td
-                            className={styles.month_cell}
-                            key={dayIndex}
-                            onClick={() => cellClickMonth(activity, dayIndex)}
-                            style={{
-                              backgroundColor: dayColorMonth(
-                                activity,
-                                dayIndex
-                              ),
-                              boxShadow: dayShadowMonth(activity, dayIndex),
-                            }}
-                          ></td>
-                        )
-                      )}
-                    </tr>
-                  ))}
+                  {habits.length > 0 ? (
+                    Object.keys(days).map((activity, index) => (
+                      <tr key={index} className={styles.month_cell_row}>
+                        <td className={styles.month_cell_habit}>
+                          <div className={styles.activity_month}>
+                            {activity}
+                          </div>
+                          <p
+                            onClick={() => eraseHabit(activity, index)}
+                            className={styles.x_button_month}
+                          >
+                            X
+                          </p>
+                        </td>
+                        {Array.from(
+                          { length: daysInMonth(year, month) },
+                          (_, dayIndex) => (
+                            <td
+                              className={styles.month_cell}
+                              key={dayIndex}
+                              onClick={() => cellClickMonth(activity, dayIndex)}
+                              style={{
+                                backgroundColor: dayColorMonth(
+                                  activity,
+                                  dayIndex
+                                ),
+                                boxShadow: dayShadowMonth(activity, dayIndex),
+                              }}
+                            ></td>
+                          )
+                        )}
+                      </tr>
+                    ))
+                  ) : (
+                    <div className={styles.no_habits_container}>
+                      <div className={styles.no_habits_text}>
+                        HABIT LIST EMPTY
+                      </div>
+                      <div className={styles.no_habits_subcontainer}>
+                        <div className={styles.no_habits_text_small}>
+                          Want to add a habit?
+                        </div>
+                        <div className={styles.add_more_week_container}>
+                          <p
+                            className={styles.add_more_week}
+                            onClick={() => addHabit()}
+                          >
+                            NEW HABIT +
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </tbody>
               </table>
             </div>

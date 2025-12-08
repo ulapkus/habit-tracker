@@ -62,6 +62,7 @@ export default function Child() {
   };
 
   const hasSeenModal = async () => {
+    console.log("hasSeenModal");
     const makeFalse = false;
     try {
       const res = await fetch("/api/updateModal", {

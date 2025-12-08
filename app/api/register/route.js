@@ -5,11 +5,13 @@ import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
   const { name, email, password, habits, days, colors } = await request.json();
+  console.log("trying to connect");
   await Connect();
-  const existingUser = await Users.findOne({ email });
-  if (existingUser) {
-    return new NextResponse("Email is already in use", { status: 400 });
-  }
+  console.log("connected");
+  // const existingUser = await Users.findOne({ email });
+  // if (existingUser) {
+  //   return new NextResponse("Email is already in use", { status: 400 });
+  // }
 
   const hashedPassword = await bcrypt.hash(password, 5);
   const newUser = new Users({
